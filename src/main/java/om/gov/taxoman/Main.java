@@ -1,6 +1,7 @@
 package om.gov.taxoman;
 
 import om.gov.taxoman.entity.Department;
+import om.gov.taxoman.repository.DepartmentRepository;
 
 import java.sql.*;
 import java.util.*;
@@ -32,40 +33,132 @@ public class Main {
 //        System.out.println(employeeMap.get("amin"));
 
 
+//        try {
+//
+//            List<Department> departments = new ArrayList<>();
+//
+//
+//            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
+//
+//            //For Select
+//            PreparedStatement ps = conn.prepareStatement("select department_id, department_name, manager_id, location_id from departments");
+//            ResultSet resultSet = ps.executeQuery();
+//
+//            while (resultSet.next()) {
+//                int departmentId = resultSet.getInt(1);
+//                String departmentName = resultSet.getString(2);
+//                int managerId = resultSet.getInt(3);
+//                int locationId = resultSet.getInt(4);
+//
+//                Department department = new Department();
+//                department.setId(departmentId);
+//                department.setDepartmentName(departmentName);
+//                department.setManagerId(managerId);
+//                department.setLocationId(locationId);
+//
+//                departments.add(department);
+//            }
+//
+//            for (int i = 0; i < departments.size(); i++) {
+//                System.out.println(departments.get(i));
+//            }
+//
+//        }
+//        catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//
+
+   /////////////////////////////////////////
+
+////////////////////Insert///////////////////////
+//   try{
+//       Department department = new Department();
+//       department.setDepartmentName("Hamed");
+//       department.setId(1122);
+//       department.setManagerId(100);
+//       department.setLocationId(2600);
+//
+//       DepartmentRepository departmentRepository = new DepartmentRepository();
+//       departmentRepository.insertDepartment(department);
+//   }
+//   catch (SQLException e){
+//       throw new RuntimeException(e);
+//   }
+
+
+////////////////////Update///////////////////////
+
+//        try {
+//
+//            List<Department> departments = new ArrayList<>();
+//
+//            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
+//            PreparedStatement ps = conn.prepareStatement("update departments set department_name=? where department_id=?");
+//            ps.setString(1, "Hamed22");
+//            ps.setInt(2, 1122);
+//
+//            int rowsAffected = ps.executeUpdate();
+//            System.out.println("Number of Rows Updated: " + rowsAffected);
+//
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+
+
+////////////////////Select///////////////////////
+
+//        try {
+//
+//            List<Department> departments = new ArrayList<>();
+//
+//            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
+//            PreparedStatement ps = conn.prepareStatement("select department_id, department_name, manager_id, location_id from departments");
+//            ResultSet resultSet = ps.executeQuery();
+//
+//            while (resultSet.next()) {
+//                int departmentId = resultSet.getInt(1);
+//                String departmentName = resultSet.getString(2);
+//                int managerId = resultSet.getInt(3);
+//                int locationId = resultSet.getInt(4);
+//
+//                Department department = new Department();
+//                department.setId(departmentId);
+//                department.setDepartmentName(departmentName);
+//                department.setManagerId(managerId);
+//                department.setLocationId(locationId);
+//
+//                departments.add(department);
+//            }
+//
+//            for (int i = 0; i < departments.size(); i++) {
+//                System.out.println(departments.get(i));
+//            }
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+
+
+        ////////////////////Delete///////////////////////
         try {
 
             List<Department> departments = new ArrayList<>();
 
-
             Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
+            PreparedStatement ps = conn.prepareStatement("delete from departments where department_id=?");
+            ps.setInt(1, 1122);
 
-            //For Select
-            PreparedStatement ps = conn.prepareStatement("select department_id, department_name, manager_id, location_id from departments");
-            ResultSet resultSet = ps.executeQuery();
+            int rowsAffected = ps.executeUpdate();
+            System.out.println("Number of Rows Deleted: " + rowsAffected);
 
-            while (resultSet.next()) {
-                int departmentId = resultSet.getInt(1);
-                String departmentName = resultSet.getString(2);
-                int managerId = resultSet.getInt(3);
-                int locationId = resultSet.getInt(4);
 
-                Department department = new Department();
-                department.setId(departmentId);
-                department.setDepartmentName(departmentName);
-                department.setManagerId(managerId);
-                department.setLocationId(locationId);
-
-                departments.add(department);
-            }
-
-            for (int i = 0; i < departments.size(); i++) {
-                System.out.println(departments.get(i));
-            }
-
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
 
 
     }
